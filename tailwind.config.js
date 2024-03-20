@@ -1,8 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: ["./src/**/*.{tsx,html}"],
-	darkMode: "media",
-	prefix: "plasmo-",
+	darkMode: "class",
 	theme: {
 		extend: {
 			colors: {
@@ -23,6 +22,8 @@ module.exports = {
 			},
 			fontFamily: {
 				montserrat: ["var(--font-family-montserrat)"],
+				sora: ["var(--font-family-sora)"],
+				inter: ["var(--font-family-inter)"],
 			},
 		},
 	},
