@@ -8,8 +8,6 @@ import { UserSquareIcon } from "~components/icons/user-square"
 export const Navbar = () => {
   const { theme, setTheme } = useTheme()
 
-  console.log(theme)
-
   return (
     <div className=" bg-white dark:bg-dark flex fixed top-0 left-0 w-full z-50 border-b border-gray-200 dark:border-white/20 justify-between px-4 py-5 h-20">
       <div className="flex gap-2 items-center">

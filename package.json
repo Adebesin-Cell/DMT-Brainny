@@ -10,6 +10,7 @@
 		"package": "plasmo package"
 	},
 	"dependencies": {
+		"@plasmohq/storage": "^1.9.3",
 		"next": "^14.0.4",
 		"next-themes": "^0.3.0",
 		"plasmo": "0.85.0",

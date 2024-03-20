@@ -1,6 +1,12 @@
 import getStartedImage from "data-base64:~assets/get-started.svg"
 
+import { storage } from "~lib/storage"
+
 export const GetStartedScreen = () => {
+  const handleGetStartedButton = async () => {
+    await storage.set("GET_STARTED_COMPLETED", true)
+  }
+
   return (
     <div className=" py-12">
       <div className=" pt-7">
@@ -19,7 +25,8 @@ export const GetStartedScreen = () => {
         <img src={getStartedImage} alt="Get started banner" />
         <button
           type="button"
-          className=" w-full bg-brand-500 dark:bg-brand-800 px-12 text-center text-white font-inter font-semibold py-3  mt-4 text-base rounded-md">
+          className=" w-full bg-brand-500 dark:bg-brand-800 px-12 text-center text-white font-inter font-semibold py-3  mt-4 text-base rounded-md"
+          onClick={handleGetStartedButton}>
           Get started
         </button>
       </div>
