@@ -8,7 +8,10 @@ import { GetStartedScreen } from "~features/get-started"
 import "~style.css"
 
 function IndexPopup() {
-  const [isGetStartedCompleted] = useStorage("GET_STARTED_COMPLETED")
+  const [isGetStartedCompleted] = useStorage<boolean>(
+    "GET_STARTED_COMPLETED",
+    false
+  )
 
   return (
     <ThemeProvider attribute="class" enableSystem={false}>
