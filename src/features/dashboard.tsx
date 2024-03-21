@@ -22,6 +22,8 @@ export const DashboardScreen = () => {
     }
   }
 
+  //TODO use magic to get user connected
+
   return (
     <div className="flex-grow py-3">
       <div className="border border-gray-200 dark:border-white/20 h-[200px] p-2 rounded-lg">
@@ -60,7 +62,6 @@ export const DashboardScreen = () => {
                   class: "text-xs py-2 px-3 w-full"
                 })}
                 onClick={() => {
-                  console.log("clicked")
                   connect({ connector: injected() })
                 }}>
                 Connect Wallet
