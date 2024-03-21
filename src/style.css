@@ -12,3 +12,34 @@
     --font-family-sora: "Sora", 'sans-serif';
     --font-family-inter: "Inter", 'sans-serif';
 }
+
+.progress-bar::-webkit-progress-bar {
+    background-color: #f3f4f6;
+    border-radius: 2px;
+}
+
+.progress-bar::-webkit-progress-value {
+    background-color: #FF5CAA;
+    border-radius: 2px;
+
+}
+
+.progress-bar::-moz-progress-bar {
+    background-color: #FF5CAA;
+    border-radius: 2px;
+}
+
+.dark .progress-bar::-webkit-progress-bar {
+    background-color: #FFFFFF14;
+}
+
+.dark .progress-bar::-webkit-progress-value {
+    background-color: #ff1a88;
+    border-radius: 2px;
+
+}
+
+.dark .progress-bar::-moz-progress-bar {
+    background-color: #ff1a88;
+    border-radius: 2px;
+}

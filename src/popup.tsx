@@ -1,8 +1,7 @@
-import { ThemeProvider } from "next-themes"
-
 import { useStorage } from "@plasmohq/storage/hook"
 
 import { Layout } from "~components/layout/layout"
+import { DashboardScreen } from "~features/dashboard"
 import { GetStartedScreen } from "~features/get-started"
 
 import "~style.css"
@@ -14,13 +13,12 @@ function IndexPopup() {
   )
 
   return (
-    <ThemeProvider attribute="class" enableSystem={false}>
-      <Layout>
-        <div className="flex-grow pt-20">
-          {!isGetStartedCompleted && <GetStartedScreen />}
-        </div>
-      </Layout>
-    </ThemeProvider>
+    <Layout>
+      <div className="flex-grow pt-20">
+        {!isGetStartedCompleted && <GetStartedScreen />}
+        {isGetStartedCompleted && <DashboardScreen />}
+      </div>
+    </Layout>
   )
 }
 
