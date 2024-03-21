@@ -7,7 +7,6 @@ export const button = tv({
 		"justify-center",
 		"gap-2",
 		"font-medium",
-		"border",
 		"rounded-md",
 		"transition-colors",
 		"ease-in-out",
@@ -17,8 +16,9 @@ export const button = tv({
 	],
 	variants: {
 		variant: {
-			primary:
-				"bg-brand-500 dark:bg-brand-800 text-white border-brand-500 dark:border-brand-800",
+			primary: "bg-brand-500 dark:bg-brand-800 text-white",
+			tertiary:
+				"bg-white text-gray-600 border border-gray-300 dark:border-white/300 dark:text-white/700",
 		},
 	},
 });
