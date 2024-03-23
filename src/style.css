@@ -13,6 +13,10 @@
   --font-family-inter: "Inter", 'sans-serif';
 }
 
+.input {
+  @apply border rounded-md border-gray-200 py-2 px-3 dark:border-gray-700 dark:bg-gray-700 focus:outline-none focus:border-[#ff4da3] focus:shadow-input transition-colors ease-in-out;
+}
+
 .progress-bar::-webkit-progress-bar {
   background-color: #f3f4f6;
   border-radius: 2px;

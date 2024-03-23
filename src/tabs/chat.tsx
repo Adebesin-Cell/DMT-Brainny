@@ -1,5 +1,5 @@
 import { ChatList } from "~components/chat/chat-list"
-import { ChatBox } from "~components/chat/chatbox"
+import { CustomKnowledge } from "~components/chat/custom-knowledge"
 import { HeaderTabs } from "~features/header"
 
 const tabsData = [
@@ -10,7 +10,7 @@ const tabsData = [
   },
   {
     label: "Custom Knowledge",
-    content: "Change your password here.",
+    content: <CustomKnowledge />,
     value: "password"
   }
 ]
@@ -19,7 +19,6 @@ export const ChatBotPage = () => {
   return (
     <>
       <HeaderTabs title="IQ GPT Chatbot" tabs={tabsData} />
-      <ChatBox />
     </>
   )
 }

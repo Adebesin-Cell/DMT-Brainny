@@ -4,6 +4,9 @@ module.exports = {
 	darkMode: "class",
 	theme: {
 		extend: {
+			boxShadow: {
+				input: "#ff80bd 0px 0px 0px 1.5px",
+			},
 			colors: {
 				brand: {
 					50: "#ffe5f1",
