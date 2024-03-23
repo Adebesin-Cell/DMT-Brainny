@@ -27,7 +27,7 @@ export const GetStartedScreen = () => {
           type="button"
           className="w-full bg-brand-500 dark:bg-brand-800 px-12 text-center text-white font-inter font-semibold py-3  mt-4 text-base rounded-md"
           onClick={handleGetStartedButton}>
-          Get started
+          Sign In
         </button>
       </div>
     </div>

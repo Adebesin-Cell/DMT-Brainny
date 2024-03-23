@@ -1,75 +1,81 @@
-import { useAccount, useConnect } from "wagmi"
-import { injected } from "wagmi/connectors"
-
 import { useStorage } from "@plasmohq/storage/hook"
 
 import { button } from "~components/element/button"
-import { EyeIcon } from "~components/icons/eyes"
-import { storage } from "~lib/storage"
+import { LampIcon } from "~components/icons/lamp-charge"
+import { Logo } from "~components/icons/logo"
+import { Footer } from "~components/layout/footer"
+import { GetStartedScreen } from "~features/get-started"
+
+import DashboardCards from "./dashboard-cards"
+
+const cardData = [
+  {
+    title: "IQGPT Chatbot",
+    descriptions: [
+      "IQ GPT/Custom Knowledge",
+      "With the IQGPT Chatbot, you are able to generate page summary, as well as add documents to your custom knowledge."
+    ],
+    buttonLabel: "Use the IQ GPT Chatbot",
+    Icon: Logo,
+    href: "/tabs/chat.html"
+  },
+  {
+    title: "Crypto News/ Wikis",
+    descriptions: [
+      "Crypto news, wikis, twitter crypto timeline and events",
+      "Know what is going on in the crypto world in all capacities."
+    ],
+    buttonLabel: "Check it out",
+    Icon: Logo,
+    href: "/tabs/news.html"
+  },
+  {
+    title: "Quizzes",
+    descriptions: [
+      "For all crypto enthusiasts and Web3 wizards! Take this quiz to see if you're truly up-to-date on the latest trends and hottest topics in the blockchain space. Get ready to learn and be entertained!"
+    ],
+    buttonLabel: "Start Quiz",
+    Icon: LampIcon,
+    href: "/tabs/quiz.html"
+  }
+]
 
 export const DashboardScreen = () => {
-  const [isAssetsShown] = useStorage<boolean>("SHOW_ASSETS", false)
-  const { address, isConnected } = useAccount()
-  const { connect } = useConnect()
+  const [isGetStartedCompleted] = useStorage<boolean>(
+    "GET_STARTED_COMPLETED",
+    false
+  )
 
-  console.log("address", { address, isConnected })
-
-  const toggleAssetDisplay = async () => {
-    if (isAssetsShown) {
-      await storage.set("SHOW_ASSETS", false)
-    } else {
-      await storage.set("SHOW_ASSETS", true)
-    }
-  }
-
-  //TODO use magic to get user connected
-
-  return (
-    <div className="flex-grow py-3">
-      <div className="border border-gray-200 dark:border-white/20 h-[200px] p-2 rounded-lg">
+  return !isGetStartedCompleted ? (
+    <GetStartedScreen />
+  ) : (
+    <div className="flex-grow py-3 pb-[60px]">
+      <div className="border border-gray-200 dark:border-white/20 p-2 rounded-lg">
         <div className="flex justify-between items-center">
           <div className="flex flex-col">
             <div className="flex gap-2 items-center">
-              <h1 className="text-gray-600 dark:text-white/70 text-sm">
-                Total Asset
+              <h1 className="text-gray-600 dark:text-white/70 text-xs">
+                IQ Price
               </h1>
-              <button type="button" onClick={toggleAssetDisplay}>
-                <EyeIcon className="w-4 h-4 text-gray-800 dark:text-white/90" />
-              </button>
             </div>
             <p className="text-gray-600 dark:text-white/70 text-base font-bold">
-              {isAssetsShown ? "$20,345.89" : "--"}
+              $0.18 <span className="text-[8px] text-green-500">(+3.457%)</span>
             </p>
           </div>
-          <div className="">
+          <div>
             <button
               type="button"
               className={button({
                 variant: "primary",
                 class: "px-10 py-2 text-xs"
               })}>
-              Stake
+              Stake IQ
             </button>
           </div>
         </div>
-        <div className="mt-3">
-          <div className="grid grid-cols-[1fr_2fr]">
-            <div className="">
-              <button
-                type="button"
-                className={button({
-                  variant: "tertiary",
-                  class: "text-xs py-2 px-3 w-full"
-                })}
-                onClick={() => {
-                  connect({ connector: injected() })
-                }}>
-                Connect Wallet
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
+      <DashboardCards cards={cardData} />
+      <Footer />
     </div>
   )
 }

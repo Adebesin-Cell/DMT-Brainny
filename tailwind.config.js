@@ -19,12 +19,28 @@ module.exports = {
 					900: "#5d1738",
 				},
 				dark: "#070708",
+				"dark-2": "#121214",
 			},
 			fontFamily: {
 				montserrat: ["var(--font-family-montserrat)"],
 				sora: ["var(--font-family-sora)"],
 				inter: ["var(--font-family-inter)"],
 			},
+			keyframes: {
+				"accordion-down": {
+					from: { height: "0" },
+					to: { height: "var(--radix-accordion-content-height)" },
+				},
+				"accordion-up": {
+					from: { height: "var(--radix-accordion-content-height)" },
+					to: { height: "0" },
+				},
+			},
+			animation: {
+				"accordion-down": "accordion-down 0.2s ease-out",
+				"accordion-up": "accordion-up 0.2s ease-out",
+			},
 		},
 	},
+	plugins: [require("tailwindcss-animate")],
 };

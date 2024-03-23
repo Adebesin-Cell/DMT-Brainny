@@ -17,8 +17,7 @@ export const button = tv({
 	variants: {
 		variant: {
 			primary: "bg-brand-500 dark:bg-brand-800 text-white",
-			tertiary:
-				"bg-white text-gray-600 border border-gray-300 dark:border-white/300 dark:text-white/700",
+			tertiary: "bg-white dark:bg-dark text-gray-600 dark:text-white/70",
 		},
 	},
 });

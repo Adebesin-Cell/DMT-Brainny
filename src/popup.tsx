@@ -1,24 +1,24 @@
-import { useStorage } from "@plasmohq/storage/hook"
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
 
 import { Layout } from "~components/layout/layout"
 import { DashboardScreen } from "~features/dashboard"
-import { GetStartedScreen } from "~features/get-started"
 
 import "~style.css"
 
-function IndexPopup() {
-  const [isGetStartedCompleted] = useStorage<boolean>(
-    "GET_STARTED_COMPLETED",
-    false
-  )
+import { ChatBotPage } from "~tabs/chat"
 
+function IndexPopup() {
   return (
-    <Layout>
-      <div className="flex-grow pt-20">
-        {!isGetStartedCompleted && <GetStartedScreen />}
-        {isGetStartedCompleted && <DashboardScreen />}
-      </div>
-    </Layout>
+    <Router>
+      <Layout>
+        <div className="flex-grow pt-20">
+          <Routes>
+            <Route path="/popup.html" element={<DashboardScreen />} />
+            <Route path="/tabs/chat.html" element={<ChatBotPage />} />
+          </Routes>
+        </div>
+      </Layout>
+    </Router>
   )
 }
 
