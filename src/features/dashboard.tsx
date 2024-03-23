@@ -49,7 +49,7 @@ export const DashboardScreen = () => {
   return !isGetStartedCompleted ? (
     <GetStartedScreen />
   ) : (
-    <div className="flex-grow py-3 pb-[60px]">
+    <div className="flex-grow py-3 pb-[60px] px-5">
       <div className="border border-gray-200 dark:border-white/20 p-2 rounded-lg">
         <div className="flex justify-between items-center">
           <div className="flex flex-col">
@@ -68,7 +68,10 @@ export const DashboardScreen = () => {
               className={button({
                 variant: "primary",
                 class: "px-10 py-2 text-xs"
-              })}>
+              })}
+              onClick={() =>
+                window.open("https://iq.braindao.org/dashboard", "_blank")
+              }>
               Stake IQ
             </button>
           </div>

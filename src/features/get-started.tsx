@@ -8,7 +8,7 @@ export const GetStartedScreen = () => {
   }
 
   return (
-    <div className="py-12">
+    <div className="py-12 px-5">
       <div className="pt-7">
         <div className="px-2.5 py-1 bg-brand-50 dark:bg-brand-200  w-[max-content] mx-auto rounded-2xl">
           <p className="text-sm font-normal text-center text-brand-500 dark:text-brand-800 font-sora">
