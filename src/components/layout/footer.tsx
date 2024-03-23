@@ -3,7 +3,7 @@ import { FlashIcon } from "~components/icons/flash"
 
 export const Footer = () => {
   return (
-    <div className="border-t fixed left-0 bottom-0 w-full bg-white dark:bg-dark flex border-gray-200 dark:border-white/20 h-[50px] justify-between px-2 py-4 items-center">
+    <div className="border-t fixed left-0 bottom-0 w-full bg-white dark:bg-dark flex border-gray-200 dark:border-white/10 h-[50px] justify-between px-2 py-4 items-center">
       <p className="text-gray-600 dark:text-white/80 text-xs font-normal">
         5 Trials Left
       </p>

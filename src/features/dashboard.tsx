@@ -50,7 +50,7 @@ export const DashboardScreen = () => {
     <GetStartedScreen />
   ) : (
     <div className="flex-grow py-3 pb-[60px] px-5">
-      <div className="border border-gray-200 dark:border-white/20 p-2 rounded-lg">
+      <div className="border border-gray-200 dark:border-white/10 p-2 rounded-lg">
         <div className="flex justify-between items-center">
           <div className="flex flex-col">
             <div className="flex gap-2 items-center">

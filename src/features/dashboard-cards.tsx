@@ -16,7 +16,7 @@ const DashboardCard = ({ card }: { card: CardData }) => {
   const navigate = useNavigate()
 
   return (
-    <div className="bg-[#F9FAFB] dark:bg-dark-2 p-2 border border-gray-200 dark:border-white/20 rounded-lg">
+    <div className="bg-[#F9FAFB] dark:bg-dark-2 p-2 border border-gray-200 dark:border-white/10 rounded-lg">
       <div className="flex gap-2">
         <div>
           <card.Icon className="w-6 h-6" />

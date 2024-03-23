@@ -24,7 +24,7 @@ export const ChatBox = () => {
   }, [])
 
   return (
-    <div className="border-t fixed left-0 bottom-0 w-full bg-white dark:bg-dark flex border-gray-200 dark:border-white/20 h-auto justify-between px-2 py-2 items-center">
+    <div className="border-t fixed left-0 bottom-0 w-full bg-white dark:bg-dark flex border-gray-200 dark:border-white/10 h-auto justify-between px-2 py-2 items-center">
       <textarea
         value={textareaValue}
         onChange={handleTextareaInput}

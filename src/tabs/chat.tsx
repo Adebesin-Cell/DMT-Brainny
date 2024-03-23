@@ -1,14 +1,15 @@
+import { ChatList } from "~components/chat/chat-list"
 import { ChatBox } from "~components/chat/chatbox"
 import { HeaderTabs } from "~features/header"
 
 const tabsData = [
   {
-    label: "Account",
-    content: "Make changes to your account here.",
+    label: "Chatbot",
+    content: <ChatList />,
     value: "account"
   },
   {
-    label: "Password",
+    label: "Custom Knowledge",
     content: "Change your password here.",
     value: "password"
   }
