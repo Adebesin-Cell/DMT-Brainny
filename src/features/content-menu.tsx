@@ -1,5 +1,5 @@
 import logo from "data-base64:~assets/icon.png"
-import { useEffect, useState } from "react"
+import { useEffect, useState, type FormEvent } from "react"
 
 import { AddIcon } from "~components/icons/add"
 import {
@@ -32,7 +32,7 @@ export const ContentMenu = ({
 }) => {
   const [isClicked, setIsClicked] = useState(false)
 
-  const handleTriggerClick = (event) => {
+  const handleTriggerClick = (event: FormEvent<HTMLButtonElement>) => {
     event.stopPropagation()
     setIsClicked(true)
   }
