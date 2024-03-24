@@ -16,9 +16,5 @@ const tabsData = [
 ]
 
 export const ChatBotPage = () => {
-  return (
-    <>
-      <HeaderTabs title="IQ GPT Chatbot" tabs={tabsData} />
-    </>
-  )
+  return <HeaderTabs title="IQ GPT Chatbot" tabs={tabsData} />
 }
