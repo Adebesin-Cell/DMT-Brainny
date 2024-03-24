@@ -9,19 +9,35 @@ export const config = {
 }
 
 function prefixCssText(cssText: string, prefix: string) {
-  const classSelectorRegex = /\.([-_a-zA-Z]+[_a-zA-Z0-9-]*)(?=[^{}]*{)/g
+  // Regex to match class selectors, capturing groups for specific logic handling
+  const classSelectorRegex = /\.([a-zA-Z0-9_-]+)((?:\:\S+)?)(?=[^{}]*{)/g
 
-  const prefixedCssText = cssText.replace(classSelectorRegex, (match) => {
-    if (match.startsWith(`.${prefix}`)) {
-      return match
+  const prefixedCssText = cssText.replace(
+    classSelectorRegex,
+    (match, className, pseudo) => {
+      // Cases where .dark or .data are not prefixed if they stand alone
+      if (
+        (className === "dark" ||
+          className === "data" ||
+          className === "hover") &&
+        !pseudo
+      ) {
+        return match
+      }
+      // Specific handling for .dark: and .data: with pseudo selectors
+      if (className === "dark" || className === "data") {
+        return `.${className}${pseudo.startsWith(":") ? prefix + pseudo : pseudo}`
+      }
+      // Prefixing all other classes
+
+      return `.${prefix}${className}${pseudo}`
     }
-    return `.${prefix}${match.slice(1)}`
-  })
+  )
 
   return prefixedCssText
 }
 
-const injectGlobalStyle = () => {
+export const injectGlobalStyle = () => {
   const style = document.createElement("style")
 
   const prefixedCssText = prefixCssText(cssText, "bb-")
@@ -29,7 +45,7 @@ const injectGlobalStyle = () => {
   document.head.appendChild(style)
 }
 
-const initializeQuickMenu = () => {
+export const initializeQuickMenu = () => {
   injectGlobalStyle()
 
   document.body.classList.add("braindao_body")
