@@ -1,42 +1,40 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
 
 type ResponseData = {
-  prices?: any;
-  last_price?: number;
-  last_market_cap?: number;
-  total_volumes?: number[][];
-  status: boolean;
-  message: string;
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	prices?: any;
+
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	market_caps?: any;
 };
 
 const fetchGraphData = async (): Promise<ResponseData> => {
-  const url =
-    'https://api.coingecko.com/api/v3/coins/everipedia/market_chart?vs_currency=usd&days=30';
+	const url =
+		"https://api.coingecko.com/api/v3/coins/everipedia/market_chart?vs_currency=usd&days=30";
 
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
+	const response = await fetch(url);
+	if (!response.ok) {
+		throw new Error("Network response was not ok");
+	}
 
-  console.log("response", response)
+	console.log("response", response);
 
-  return response.json();
+	return response.json();
 };
 
 const useFetchGraphData = (): {
-  data: ResponseData;
-  isLoading: boolean;
-  isError: boolean;
-  error?: Error;
+	data: ResponseData;
+	isLoading: boolean;
+	isError: boolean;
+	error?: Error;
 } => {
+	const { data, isLoading, isError, error } = useQuery<ResponseData>({
+		queryKey: ["graphData"],
+		queryFn: fetchGraphData,
+	});
 
-  const { data, isLoading, isError, error } = useQuery<ResponseData>(
-    {queryKey: ['graphData'],
-    queryFn : fetchGraphData}
-  );
-
-  console.log({ data, isLoading, isError, error })
-  return { data, isLoading, isError, error };
+	console.log({ data, isLoading, isError, error });
+	return { data, isLoading, isError, error };
 };
 
 export default useFetchGraphData;

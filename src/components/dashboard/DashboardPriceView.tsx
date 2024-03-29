@@ -1,3 +1,4 @@
+import * as Humanize from "humanize-plus"
 import React from "react"
 import { Area, AreaChart, ResponsiveContainer, Tooltip } from "recharts"
 
@@ -26,17 +27,25 @@ export default CustomTooltip
 export const DashboardPriceView = () => {
   const { data, isLoading } = useFetchGraphData()
 
-  console.log("data.prices", data.prices)
+  if (!data && isLoading) {
+    return (
+      <div className="border border-gray-200 dark:border-white/10 px-2 min-h-[200px] py-12 flex rounded-lg justify-center items-center">
+        <Spinner className="animate-spin w-6 h-6" />
+      </div>
+    )
+  }
 
-  const transformedPrices = data.prices.map(
+  const lastPrice = data.prices[data.prices.length - 1]?.[1] ?? 0
+  const lastMarketCap = data.market_caps[data.market_caps.length - 1]?.[1] ?? 0
+
+  const price = data ? Humanize.formatNumber(lastPrice ?? 0, 4) : ""
+  const marketCap = data ? Humanize.compactInteger(lastMarketCap ?? 0, 2) : ""
+  const transformedPrices = data?.prices?.map(
     ([timestamp, price]: [number, number]) => ({
       name: timestamp,
       amt: price
     })
-  ) as {
-    name: string
-    amt: number
-  }[]
+  )
 
   return (
     <div className="border border-gray-200 dark:border-white/10 p-2 rounded-lg">
@@ -48,7 +57,8 @@ export const DashboardPriceView = () => {
             </h1>
           </div>
           <p className="text-gray-600 dark:text-white/70 text-base font-bold">
-            $0.18 <span className="text-[8px] text-green-500">(+3.457%)</span>
+            ${`${price}`}{" "}
+            <span className="text-[8px] text-green-500">(+3.457%)</span>
           </p>
         </div>
         <div>
@@ -65,33 +75,27 @@ export const DashboardPriceView = () => {
           </button>
         </div>
       </div>
-      {isLoading ? (
-        <div className="flex justify-center py-5 text-gray-800 dark:text-white/90">
-          <Spinner className="animate-spin w-6 h-6" />
-        </div>
-      ) : (
-        <div className="z-50 relative">
-          <ResponsiveContainer width="100%" height={110}>
-            <AreaChart data={transformedPrices}>
-              <defs>
-                <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#FF1A88" stopOpacity={0.3} />
-                  <stop offset="100%" stopColor="#FF1A88" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <Tooltip content={<CustomTooltip />} />
-              <Area
-                className="area"
-                type="monotone"
-                dataKey="amt"
-                stroke="#FF1A88"
-                fillOpacity={1}
-                fill="url(#colorUv)"
-              />
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
-      )}
+      <div className="z-50 relative">
+        <ResponsiveContainer width="100%" height={110}>
+          <AreaChart data={transformedPrices}>
+            <defs>
+              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#FF1A88" stopOpacity={0.3} />
+                <stop offset="100%" stopColor="#FF1A88" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <Tooltip content={<CustomTooltip />} />
+            <Area
+              className="area"
+              type="monotone"
+              dataKey="amt"
+              stroke="#FF1A88"
+              fillOpacity={1}
+              fill="url(#colorUv)"
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   )
 }
