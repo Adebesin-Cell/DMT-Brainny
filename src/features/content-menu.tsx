@@ -1,7 +1,6 @@
 import logo from "data-base64:~assets/icon.png"
 import { useEffect, useState, type FormEvent } from "react"
 
-import { AddIcon } from "~components/icons/add"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,7 +18,7 @@ const CustomDropdownMenuItem = ({
   Icon: JSX.Element
 }) => (
   <DropdownMenuItem className="bb-py-2 bb-px-3 bb-text-sm bb-font-normal bb-text-gray-600 dark:text-white/80 bb-gap-2 hover:bg-gray-100 dark:hover:bg-white/10">
-    {children} {Icon && Icon}
+    {children} {Icon}
   </DropdownMenuItem>
 )
 
@@ -34,7 +33,7 @@ export const ContentMenu = ({
 
   const handleTriggerClick = (event: FormEvent<HTMLButtonElement>) => {
     event.stopPropagation()
-    setIsClicked(true)
+    setIsClicked(!isClicked)
   }
 
   useEffect(() => {
@@ -58,34 +57,40 @@ export const ContentMenu = ({
       </DropdownMenuTrigger>
       <DropdownMenuContent
         side="bottom"
-        className="bb-bg-white bb-shadow-xl dark:bg-dark bb-w-[250px] bb-select-none bb-outline-0 bb-py-2 bb-rounded">
+        className="bb-bg-white bb-shadow-xl dark:bg-dark bb-w-[250px] bb-select-none bb-outline-0 bb-py-2 bb-rounded"
+        onClick={(e) => e.stopPropagation()}>
         <DropdownMenuGroup>
-          <CustomDropdownMenuItem Icon={<AddIcon className="bb-w-4 bb-h-4" />}>
+          <CustomDropdownMenuItem
+            Icon={
+              <span role="img" aria-label="Add to custom knowledge">
+                📚
+              </span>
+            }>
             Add to custom knowledge
           </CustomDropdownMenuItem>
           <CustomDropdownMenuItem
             Icon={
-              <span role="img" aria-label="crypto">
+              <span role="img" aria-label="Ask me about crypto">
                 🟡
               </span>
             }>
-            Ask me about crypto{" "}
+            Ask me about crypto
           </CustomDropdownMenuItem>
           <CustomDropdownMenuItem
             Icon={
-              <span role="img" aria-label="summary">
+              <span role="img" aria-label="Content/page summary">
                 📝
               </span>
             }>
-            Content/page summary{" "}
+            Content/page summary
           </CustomDropdownMenuItem>
           <CustomDropdownMenuItem
             Icon={
-              <span role="img" aria-label="info">
+              <span role="img" aria-label="Generate more info">
                 ❓
               </span>
             }>
-            Generate more info{" "}
+            Generate more info
           </CustomDropdownMenuItem>
           <CustomDropdownMenuItem
             Icon={
@@ -93,7 +98,7 @@ export const ContentMenu = ({
                 🤷‍♂️
               </span>
             }>
-            ELI5{" "}
+            ELI5
           </CustomDropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

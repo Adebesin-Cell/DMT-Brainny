@@ -1,6 +1,6 @@
 import { useStorage } from "@plasmohq/storage/hook"
 
-import { button } from "~components/element/button"
+import { DashboardPriceView } from "~components/dashboard/DashboardPriceView"
 import { LampIcon } from "~components/icons/lamp-charge"
 import { Logo } from "~components/icons/logo"
 import { Footer } from "~components/layout/footer"
@@ -50,33 +50,7 @@ export const DashboardScreen = () => {
     <GetStartedScreen />
   ) : (
     <div className="flex-grow py-3 pb-[60px] px-5">
-      <div className="border border-gray-200 dark:border-white/10 p-2 rounded-lg">
-        <div className="flex justify-between items-center">
-          <div className="flex flex-col">
-            <div className="flex gap-2 items-center">
-              <h1 className="text-gray-600 dark:text-white/70 text-xs">
-                IQ Price
-              </h1>
-            </div>
-            <p className="text-gray-600 dark:text-white/70 text-base font-bold">
-              $0.18 <span className="text-[8px] text-green-500">(+3.457%)</span>
-            </p>
-          </div>
-          <div>
-            <button
-              type="button"
-              className={button({
-                variant: "primary",
-                class: "px-10 py-2 text-xs"
-              })}
-              onClick={() =>
-                window.open("https://iq.braindao.org/dashboard", "_blank")
-              }>
-              Stake IQ
-            </button>
-          </div>
-        </div>
-      </div>
+      <DashboardPriceView />
       <DashboardCards cards={cardData} />
       <Footer />
     </div>

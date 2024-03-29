@@ -1,5 +1,5 @@
 import cssText from "data-text:~style.css"
-import { createRoot } from "react-dom/client"
+import ReactDOM from "react-dom"
 import HighlightMenu from "react-highlight-menu"
 
 import { ContentMenu } from "~features/content-menu"
@@ -49,9 +49,10 @@ export const initializeQuickMenu = () => {
   injectGlobalStyle()
 
   document.body.classList.add("braindao_body")
-  const root = createRoot(document.createElement("div"))
+  const root = document.createElement("div")
+  document.body.appendChild(root)
 
-  root.render(
+  ReactDOM.render(
     <HighlightMenu
       target=".braindao_body"
       allowedPlacements="bottom-start"
@@ -67,7 +68,8 @@ export const initializeQuickMenu = () => {
         padding: "0",
         margin: "10px"
       }}
-    />
+    />,
+    root
   )
 }
 
