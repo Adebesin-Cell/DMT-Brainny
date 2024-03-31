@@ -1,12 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
 type ResponseData = {
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	prices?: any;
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	market_caps?: any;
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	total_volumes?: any;
+	prices: [number, number][];
+	market_caps: [number, number][];
+	total_volumes: [number, number][];
 };
 
 const fetchGraphData = async (): Promise<ResponseData> => {
@@ -22,7 +19,7 @@ const fetchGraphData = async (): Promise<ResponseData> => {
 };
 
 const useFetchGraphData = (): {
-	data: ResponseData;
+	data: ResponseData | null;
 	isLoading: boolean;
 	isError: boolean;
 	error?: Error;

@@ -44,11 +44,10 @@ export const DashboardPriceView = () => {
   const lastPrice = data.prices[data.prices.length - 1]?.[1] ?? 0
   const lastMarketCap = data.market_caps[data.market_caps.length - 1]?.[1] ?? 0
   const lastVolume = data.total_volumes[data.market_caps.length - 1]?.[1] ?? 0
-
-  const price = data ? Humanize.formatNumber(lastPrice ?? 0, 4) : ""
-  const marketCap = data ? Humanize.compactInteger(lastMarketCap ?? 0, 2) : ""
-  const totalVolume = data ? Humanize.compactInteger(lastVolume ?? 0, 2) : ""
-  const transformedPrices = data?.prices?.map(
+  const price = Humanize.formatNumber(lastPrice ?? 0, 4)
+  const marketCap = Humanize.compactInteger(lastMarketCap ?? 0, 2)
+  const totalVolume = Humanize.compactInteger(lastVolume ?? 0, 2)
+  const transformedPrices = data.prices.map(
     ([timestamp, price]: [number, number]) => {
       const date = new Date(timestamp)
       const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()} ${date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
@@ -57,7 +56,7 @@ export const DashboardPriceView = () => {
         amt: price
       }
     }
-  ) as { name: string; amt: number }[]
+  )
 
   return (
     <div className="border border-gray-200 dark:border-white/10 rounded-lg">

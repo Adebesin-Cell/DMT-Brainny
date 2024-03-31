@@ -85,6 +85,9 @@ devDependencies:
   '@types/chrome':
     specifier: 0.0.258
     version: 0.0.258
+  '@types/humanize-plus':
+    specifier: ^1.8.0
+    version: 1.8.2
   '@types/node':
     specifier: 20.11.5
     version: 20.11.5
@@ -3664,6 +3667,10 @@ packages:
   /@types/http-cache-semantics@4.0.4:
     resolution: {integrity: sha512-1m0bIFVc7eJWyve9S0RnuRgcQqF/Xd5QsUZAZeQFr1Q3/p9JWoQQEqmVy+DPTNpGXwhgIetAoYF8JSc33q29QA==}
     dev: false
+
+  /@types/humanize-plus@1.8.2:
+    resolution: {integrity: sha512-uyFFCGYuqU/Cpr8h+iE2k0shDAnXltV0Pd/r6bmxFAvXVss2cvEiQqeZpwuX8BsAtWN0JTipeXrDxdHk4EEhPg==}
+    dev: true
 
   /@types/istanbul-lib-coverage@2.0.6:
     resolution: {integrity: sha512-2QF/t/auWm0lsy8XtKVPG19v3sSOQlJe/YHZgfjb/KBBHOGSV+J2q/S671rcq9uTBrLAXmZpqJiaQbMT+zNU1w==}
