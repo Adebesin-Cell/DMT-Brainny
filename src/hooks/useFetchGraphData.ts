@@ -3,9 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 type ResponseData = {
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	prices?: any;
-
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	market_caps?: any;
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	total_volumes?: any;
 };
 
 const fetchGraphData = async (): Promise<ResponseData> => {
@@ -16,8 +17,6 @@ const fetchGraphData = async (): Promise<ResponseData> => {
 	if (!response.ok) {
 		throw new Error("Network response was not ok");
 	}
-
-	console.log("response", response);
 
 	return response.json();
 };
@@ -33,7 +32,6 @@ const useFetchGraphData = (): {
 		queryFn: fetchGraphData,
 	});
 
-	console.log({ data, isLoading, isError, error });
 	return { data, isLoading, isError, error };
 };
 
