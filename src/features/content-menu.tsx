@@ -12,12 +12,16 @@ import {
 // Custom DropdownMenuItem component that encapsulates common styles
 const CustomDropdownMenuItem = ({
   children,
-  Icon
+  Icon,
+  onClick
 }: {
   children: React.ReactNode
   Icon: JSX.Element
+  onClick: () => void
 }) => (
-  <DropdownMenuItem className="bb-py-2 bb-px-3 bb-text-sm bb-font-normal bb-text-gray-600 dark:text-white/80 bb-gap-2 hover:bg-gray-100 dark:hover:bg-white/10">
+  <DropdownMenuItem
+    onClick={onClick}
+    className="bb-py-2 bb-px-3 bb-text-sm bb-font-normal bb-text-gray-600 dark:text-white/80 bb-gap-2 hover:bg-gray-100 dark:hover:bg-white/10">
     {children} {Icon}
   </DropdownMenuItem>
 )
@@ -34,6 +38,11 @@ export const ContentMenu = ({
   const handleTriggerClick = (event: FormEvent<HTMLButtonElement>) => {
     event.stopPropagation()
     setIsClicked(!isClicked)
+  }
+
+  const openPopupWithOption = (option: string) => {
+    chrome.runtime.sendMessage({ action: "openPopup", option, selectedText })
+    setMenuOpen(false)
   }
 
   useEffect(() => {
@@ -65,7 +74,8 @@ export const ContentMenu = ({
               <span role="img" aria-label="Add to custom knowledge">
                 📚
               </span>
-            }>
+            }
+            onClick={() => openPopupWithOption("custom")}>
             Add to custom knowledge
           </CustomDropdownMenuItem>
           <CustomDropdownMenuItem
@@ -73,7 +83,8 @@ export const ContentMenu = ({
               <span role="img" aria-label="Ask me about crypto">
                 🟡
               </span>
-            }>
+            }
+            onClick={() => openPopupWithOption("crypto")}>
             Ask me about crypto
           </CustomDropdownMenuItem>
           <CustomDropdownMenuItem
@@ -81,7 +92,8 @@ export const ContentMenu = ({
               <span role="img" aria-label="Content/page summary">
                 📝
               </span>
-            }>
+            }
+            onClick={() => openPopupWithOption("summary")}>
             Content/page summary
           </CustomDropdownMenuItem>
           <CustomDropdownMenuItem
@@ -89,7 +101,8 @@ export const ContentMenu = ({
               <span role="img" aria-label="Generate more info">
                 ❓
               </span>
-            }>
+            }
+            onClick={() => openPopupWithOption("info")}>
             Generate more info
           </CustomDropdownMenuItem>
           <CustomDropdownMenuItem
@@ -97,7 +110,8 @@ export const ContentMenu = ({
               <span role="img" aria-label="ELI5">
                 🤷‍♂️
               </span>
-            }>
+            }
+            onClick={() => openPopupWithOption("eli5")}>
             ELI5
           </CustomDropdownMenuItem>
         </DropdownMenuGroup>

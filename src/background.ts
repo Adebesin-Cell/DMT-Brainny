@@ -23,3 +23,26 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 		return true;
 	}
 });
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+	if (message.action === "openPopup") {
+		// Open the popup with the selected option and text
+		chrome.windows.create(
+			{
+				url: "popup.html",
+				type: "popup",
+				width: 400, // adjust the width and height as needed
+				height: 600,
+				focused: true, // ensure the popup window is focused
+			},
+			(window) => {
+				// After the window is created, send the message to the popup
+				chrome.tabs.query({ active: true, windowId: window.id }, (tabs) => {
+					if (tabs[0]) {
+						chrome.tabs.sendMessage(tabs[0].id, message);
+					}
+				});
+			},
+		);
+	}
+});
