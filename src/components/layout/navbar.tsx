@@ -15,7 +15,7 @@ export const Navbar = () => {
   }
 
   return (
-    <div className="bg-white dark:bg-dark flex fixed top-0 left-0 w-full z-50 border-b border-gray-200 dark:border-white/10 justify-between px-4 py-5 h-20">
+    <div className="bg-white dark:bg-dark flex fixed top-0 left-0 w-full z-[99999] border-b border-gray-200 dark:border-white/10 justify-between px-4 py-5 h-20">
       <div>
         <Link to="/popup.html" className="flex gap-2 items-center">
           <Logo className="w-[43px] h-[35px]" />

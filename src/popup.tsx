@@ -6,6 +6,7 @@ import { DashboardScreen } from "~features/dashboard"
 import "~style.css"
 
 import { ChatBotPage } from "~tabs/chat"
+import { NewsPage } from "~tabs/news"
 
 function IndexPopup() {
   return (
@@ -13,8 +14,9 @@ function IndexPopup() {
       <Layout>
         <div className="flex-grow pt-20 flex flex-col">
           <Routes>
-            <Route path="/popup.html" element={<DashboardScreen />} />
+            <Route path="/tabs/news.html" element={<DashboardScreen />} />
             <Route path="/tabs/chat.html" element={<ChatBotPage />} />
+            <Route path="/popup.html" element={<NewsPage />} />
           </Routes>
         </div>
       </Layout>

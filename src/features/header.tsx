@@ -17,6 +17,9 @@ interface HeaderTabsProps {
 export const HeaderTabs: React.FC<HeaderTabsProps> = ({ title, tabs }) => {
   const navigate = useNavigate()
 
+  const tabsCount = tabs.length
+  const gridTemplateColumns = `repeat(${tabsCount}, minmax(0, 1fr))`
+
   return (
     <Tabs
       defaultValue={tabs[0]?.value}
@@ -33,15 +36,19 @@ export const HeaderTabs: React.FC<HeaderTabsProps> = ({ title, tabs }) => {
             {title}
           </p>
         </div>
-        <TabsList className="dark:bg-dark-2 bg-gray-50 w-full mt-2 gap-2 border border-gray-200 dark:border-white/10 p-2">
-          {tabs.map((tab) => (
-            <TabsTrigger
-              key={tab.value}
-              value={tab.value}
-              className="data-[state=active]:bg-white data-[state=active]:dark:bg-dark flex-grow data-[state=active]:shadow-sm rounded text-xs text-gray-800 dark:text-white/90 data-[state=inactive]:text-gray-500 data-[state=inactive]:dark:text-white/70">
-              {tab.label}
-            </TabsTrigger>
-          ))}
+        <TabsList className="dark:bg-dark-2 bg-gray-50 w-full mt-2 gap-2 border border-gray-200 dark:border-white/10 p-2 ">
+          <div
+            className={`grid grid-cols-1 w-full sm:grid-cols-${tabsCount} gap-2 overflow-x-auto overflow-y-hidden`}
+            style={{ gridTemplateColumns }}>
+            {tabs.map((tab) => (
+              <TabsTrigger
+                key={tab.value}
+                value={tab.value}
+                className="data-[state=active]:bg-white data-[state=active]:dark:bg-dark flex-grow data-[state=active]:shadow-sm rounded text-xs text-gray-800 dark:text-white/90 data-[state=inactive]:text-gray-500 data-[state=inactive]:dark:text-white/70 px-2">
+                {tab.label}
+              </TabsTrigger>
+            ))}
+          </div>
         </TabsList>
       </div>
       <div className="dark:bg-dark-2 bg-gray-50 border-t border-gray-200 dark:border-white/10 rounded-t-lg p-5 flex-grow ">

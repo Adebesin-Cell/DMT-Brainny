@@ -6,7 +6,11 @@ type ResponseData = {
 	total_volumes: [number, number][];
 };
 
-const fetchGraphData = async (): Promise<ResponseData> => {
+/**
+/**
+ * Fetches graph data from the API.
+ */
+const fetchGraphData = async () => {
 	const url =
 		"https://api.coingecko.com/api/v3/coins/everipedia/market_chart?vs_currency=usd&days=30";
 
@@ -18,12 +22,10 @@ const fetchGraphData = async (): Promise<ResponseData> => {
 	return response.json();
 };
 
-const useFetchGraphData = (): {
-	data: ResponseData | null;
-	isLoading: boolean;
-	isError: boolean;
-	error?: Error;
-} => {
+/**
+ * Custom hook to fetch graph data.
+ */
+const useFetchGraphData = () => {
 	const { data, isLoading, isError, error } = useQuery<ResponseData>({
 		queryKey: ["graphData"],
 		queryFn: fetchGraphData,
