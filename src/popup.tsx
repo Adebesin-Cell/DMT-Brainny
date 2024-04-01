@@ -5,7 +5,7 @@ import { DashboardScreen } from "~features/dashboard"
 
 import "~style.css"
 
-import { ChatBotPage } from "~tabs/chat"
+import ChatBotPage from "~tabs/chat"
 import { NewsPage } from "~tabs/news"
 
 function IndexPopup() {
