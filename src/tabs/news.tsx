@@ -1,3 +1,4 @@
+import { Events } from "~components/news/Events"
 import { LatestWikis } from "~components/news/LatestWikis"
 import { TrendingNews } from "~components/news/TrendingNews"
 import { HeaderTabs } from "~features/header"
@@ -15,7 +16,7 @@ const tabsData = [
   },
   {
     label: "Events",
-    content: "",
+    content: <Events />,
     value: "events"
   },
   {
