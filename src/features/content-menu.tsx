@@ -1,4 +1,5 @@
 import logo from "data-base64:~assets/icon.png"
+import type { PlasmoCSConfig } from "plasmo"
 import { useEffect, useState, type FormEvent } from "react"
 
 import {
@@ -8,6 +9,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from "~components/ui/dropdown-menu"
+
+export const config: PlasmoCSConfig = {
+  matches: ["<all_urls>"],
+  all_frames: true
+}
 
 // Custom DropdownMenuItem component that encapsulates common styles
 const CustomDropdownMenuItem = ({
@@ -41,7 +47,12 @@ export const ContentMenu = ({
   }
 
   const openPopupWithOption = (option: string) => {
-    chrome.runtime.sendMessage({ action: "openPopup", option, selectedText })
+    const sideBarIframe = document.getElementById(
+      "brainny_chat"
+    ) as HTMLIFrameElement
+    if (sideBarIframe.style.width === "0px") {
+      sideBarIframe.style.width = "400px"
+    }
     setMenuOpen(false)
   }
 

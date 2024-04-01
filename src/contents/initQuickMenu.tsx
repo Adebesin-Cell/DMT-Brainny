@@ -1,14 +1,16 @@
 import cssText from "data-text:~style.css"
-import ReactDOM from "react-dom"
+import type { PlasmoCSConfig } from "plasmo"
+import { createRoot } from "react-dom/client"
 import HighlightMenu from "react-highlight-menu"
 
 import { ContentMenu } from "~features/content-menu"
 
-export const config = {
-  matches: ["<all_urls>"]
+export const config: PlasmoCSConfig = {
+  matches: ["<all_urls>"],
+  all_frames: true
 }
 
-function prefixCssText(cssText: string, prefix: string) {
+export function prefixCssText(cssText: string, prefix: string) {
   // Regex to match class selectors, capturing groups for specific logic handling
   const classSelectorRegex = /\.([a-zA-Z0-9_-]+)((?:\:\S+)?)(?=[^{}]*{)/g
 
@@ -52,7 +54,7 @@ export const initializeQuickMenu = () => {
   const root = document.createElement("div")
   document.body.appendChild(root)
 
-  ReactDOM.render(
+  createRoot(root).render(
     <HighlightMenu
       target=".braindao_body"
       allowedPlacements="bottom-start"
@@ -68,8 +70,7 @@ export const initializeQuickMenu = () => {
         padding: "0",
         margin: "10px"
       }}
-    />,
-    root
+    />
   )
 }
 

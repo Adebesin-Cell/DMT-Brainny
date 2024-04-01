@@ -50,9 +50,7 @@
 		"typescript": "5.3.3"
 	},
 	"manifest": {
-		"host_permissions": [
-			"*://*/*"
-		],
+		"host_permissions": ["*://*/*"],
 		"permissions": [
 			"activeTab",
 			"tabs",
@@ -61,7 +59,8 @@
 			"contextMenus",
 			"identity",
 			"cookies",
-			"clipboardRead"
+			"clipboardRead",
+			"webNavigation"
 		],
 		"background": {
 			"service_worker": "background.js"
